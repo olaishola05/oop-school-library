@@ -4,8 +4,11 @@ class Nameable
   end
 end
 
-class BaseDecorator
+class BaseDecorator < Nameable
+  attr_accessor :nameable
+
   def initialize(nameable)
+    super()
     @nameable = nameable
   end
 
