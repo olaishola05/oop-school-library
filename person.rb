@@ -1,14 +1,15 @@
 require_relative './interface'
 
 class Person < Nameable
-  attr_accessor :name, :age, :id
+  attr_accessor :name, :age
+  attr_reader :id
 
-  def initialize(age, parent_permission: true, name = "Unknown")
-    @id = id
+  def initialize(age, name = 'Unknown', parent_permission: true)
+    @id = Random.rand(1..100)
     @name = name
     @age = age
     @parent_permission = parent_permission
-    super
+    super()
   end
 
   def can_use_services?
@@ -16,7 +17,7 @@ class Person < Nameable
   end
 
   def correct_name
-    @name
+    name
   end
 
   private
@@ -27,5 +28,9 @@ class Person < Nameable
   end
 end
 
-ola = Person.new(17, "Ola")
+ola = Person.new(17, 'maximilianus')
 puts ola.correct_name
+capitalizedPerson = CapitalizeDecorator.new(ola)
+puts capitalizedPerson.correct_name
+capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
+puts capitalizedTrimmedPerson.correct_name
