@@ -2,14 +2,15 @@ require_relative './interface'
 
 class Person < Nameable
   attr_accessor :name, :age
-  attr_reader :id
+  attr_reader :id, :rental
 
   def initialize(age, name = 'Unknown', parent_permission: true)
+    super()
     @id = Random.rand(1..100)
     @name = name
     @age = age
     @parent_permission = parent_permission
-    super()
+    @rental = []
   end
 
   def can_use_services?

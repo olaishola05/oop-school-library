@@ -8,13 +8,6 @@ class ClassRoom
 
   def add_student(student, label)
     @students.push({ student: student, label: label })
+    student.classroom = self
   end
 end
-
-new_class_room = ClassRoom.new('Science')
-new_class_room.add_student('Max', new_class_room.label)
-new_class_room.add_student('Triop', new_class_room.label)
-new_class_room.add_student('Ade', new_class_room.label)
-
-puts new_class_room.students
-
