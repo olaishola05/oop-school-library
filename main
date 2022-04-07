@@ -1,18 +1,15 @@
 #!/usr/bin/env ruby
 
-require_relative './person'
-require_relative './book'
-require_relative './rental'
-require_relative './student'
-require_relative './teacher'
-require_relative './class_room'
-# require_relative './enums'
+require_relative './enums'
 
 class App
-    # include Enumerables
-    attr_accessor :user_name
+
+    include Enumerables
+    attr_accessor :user_name, :people, :books
     def initialize
         @name = user_name
+        @books = []
+        @people = []
     end
 
     puts 'Welcome to the School library management system'
@@ -33,30 +30,21 @@ class App
         puts '7 - Exit'
         
         options = gets.chomp.to_i
-
         puts "\n"
 
-        if options == 3
-            puts '1 to create a student and 2 to create a teacher'
-            get_choice = gets.chomp.to_i
-            if(get_choice == 1)
-                puts 'Please enter the student name: '
-                student_name = gets.chomp
-                puts 'Please enter the student age: '
-                student_age = gets.chomp.to_i
-                puts 'Has parent permission? (y/n):'
-                parent_permission = gets.chomp
-                if(parent_permission == 'y')
-                    parent_permission = true
-                else
-                    parent_permission = false
-                end
-                puts 'Please enter the student classroom: '
-                get_classroom = gets.chomp
-                student = Student.new(student_name, student_age, parent_permission, get_classroom)
-                puts "Student #{student.name} created!"
-            end
+        case options
+        when 1
+            list_all_books(books)
+        when 2
+            list_all_people(people)
+        when 3
+            create_person(people)
+        when 4
+            create_book(books)
+        else
+            
         end
+
     end
 end
 
@@ -64,6 +52,8 @@ end
 def main
     app = App.new()
     app.run_app()
+
+    main()
 end
 
 main()
