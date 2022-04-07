@@ -34,4 +34,3 @@ class Person < Nameable
     false if age < 18
   end
 end
-
