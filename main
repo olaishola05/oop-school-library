@@ -6,10 +6,10 @@ class App
 
     include Enumerables
     attr_accessor :user_name, :people, :books
-    def initialize
+    def initialize(books = [], people = [])
         @name = user_name
-        @books = []
-        @people = []
+        @books = books
+        @people = people
     end
 
     puts 'Welcome to the School library management system'
@@ -34,7 +34,7 @@ class App
 
         case options
         when 1
-            list_all_books(books)
+            list_all_books(@books)
         when 2
             list_all_people(people)
         when 3

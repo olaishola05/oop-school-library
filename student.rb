@@ -8,7 +8,7 @@ class Student < Person
     @classroom = nil
   end
 
-  def classroom=(classroom)
+  def classroom=(classrooms)
     @classroom = classroom
     classroom.students.push(self) unless classroom.students.include?(self)
   end

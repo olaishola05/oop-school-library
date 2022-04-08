@@ -8,6 +8,7 @@ require_relative './class_room'
 module Enumerables
   
   def list_all_books(books)
+    puts books
     puts "Sorry there's no available books at the moment, kindly proceed to add book" if books.empty?
 
     books.each { |book| puts "Title: \"#{book.title}\", Title: #{book.author}" }
