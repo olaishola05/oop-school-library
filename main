@@ -1,59 +1,51 @@
 #!/usr/bin/env ruby
 
-require_relative './enums'
+state = { books: [], people: [] }
 
-class App
+require_relative './app'
 
-    include Enumerables
-    attr_accessor :user_name, :people, :books
-    def initialize
-        @name = user_name
-        @books = []
-        @people = []
-    end
+puts 'Welcome to the School library App'
 
-    puts 'Welcome to the School library management system'
+print 'Please create a username: '
+user_name = gets.chomp
 
-    puts 'Please create a username: '
-    user_name = gets.chomp
-    
-    puts "\n"
-    puts "Welcome #{user_name}! Please choose an options by entering a number:"
+puts "\n"
+puts "Welcome #{user_name}! Please choose an options by entering a number:"
 
-    def run_app
-        puts '1 - List all books'
-        puts '2 - List all people'
-        puts '3 - Create a new person'
-        puts '4 - Create a new book'
-        puts '5 - Create a new rental'
-        puts '6 - List all rentals for a given id'
-        puts '7 - Exit'
-        
-        options = gets.chomp.to_i
-        puts "\n"
+def run_app
+  puts '1 - List all books'
+  puts '2 - List all people'
+  puts '3 - Create a new person'
+  puts '4 - Create a new book'
+  puts '5 - Create a new rental'
+  puts '6 - List all rentals for a given id'
+  puts '7 - Exit'
 
-        case options
-        when 1
-            list_all_books(books)
-        when 2
-            list_all_people(people)
-        when 3
-            create_person(people)
-        when 4
-            create_book(books)
-        else
-            
-        end
-
-    end
+  gets.chomp
 end
 
-
-def main
-    app = App.new()
-    app.run_app()
-
-    main()
+def main(data)
+  app = App.new
+  case run_app
+  when '1'
+    app.list_all_books(data[:books])
+  when '2'
+    app.list_all_people(data[:people])
+  when '3'
+    app.create_person(data[:people])
+  when '4'
+    app.create_book(data[:books])
+  when '5'
+    app.create_rental(data)
+  when '6'
+    app.list_rentals(data[:people])
+  when '7'
+    puts 'Thank you for using this app!'
+    return
+  else
+    puts 'Invalid selection'
+  end
+  main(data)
 end
 
-main()
+main(state)
