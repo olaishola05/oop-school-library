@@ -10,7 +10,7 @@ print 'Please create a username: '
 user_name = gets.chomp
 
 puts "\n"
-puts "Welcome #{user_name}! Please choose an options by entering a number:"
+puts "Welcome #{user_name}! Please choose an options by entering a number: "
 
 def run_app
   puts '1 - List all books'
@@ -21,6 +21,8 @@ def run_app
   puts '6 - List all rentals for a given id'
   puts '7 - Exit'
 
+  puts ''
+  print 'Please enter your selection: '
   gets.chomp
 end
 

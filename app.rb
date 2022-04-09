@@ -10,12 +10,14 @@ class App
     puts "Sorry there's no available books at the moment, kindly proceed to add book" if books.empty?
 
     books.each { |book| puts "Title: \"#{book.title}\", Title: #{book.author}" }
+    puts
   end
 
   def list_all_people(people)
     puts "Sorry there's no people available at the moment, kindly proceed to add a person" if people.empty?
 
     people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    puts
   end
 
   def create_book(books)
@@ -34,7 +36,7 @@ class App
   end
 
   def create_student(person, name, age)
-    print 'Permitted by parent? [Y/N]: '
+    print 'Has parent permission? [Y/N]: '
     permission = gets.chomp.downcase
 
     student = ''
@@ -49,7 +51,8 @@ class App
       return
     end
     person.push(student)
-    puts 'Student created successfully'
+    puts 'Person created successfully'
+    puts
   end
 
   def create_teacher(person, name, age)
@@ -57,7 +60,8 @@ class App
     specialization = gets.chomp
     teacher = Teacher.new(specialization, name, age)
     person.push(teacher)
-    puts 'Teacher created successfully'
+    puts 'Person created successfully'
+    puts
   end
 
   def create_person(person)
@@ -90,39 +94,49 @@ class App
 
     puts 'Select a book from the following list by index'
     data[:books].each_with_index { |book, index| puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}" }
+    puts
     print 'Book index: '
     book_index = gets.chomp.to_i
     book_object = data[:books][book_index]
 
-    puts 'Select a person from the following list by id'
-    data[:people].each_with_index do |person|
-      puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    puts 'Select a person from the following list by number (not id)'
+    data[:people].each_with_index do |person, index|
+      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
 
-    print 'ID of the person: '
-    person_index = gets.chomp.to_i
-    person_object = data[:people][person_index]
+    puts
+    print 'Index of the person: '
+    person_idx = gets.chomp.to_i
+    person_object = data[:people][person_idx]
 
+    puts
     print 'Date: '
     date = gets.chomp
 
     person_object.add_rental(book_object, date)
-    puts "New rental created for #{person_obj.name}"
+    puts 'Rental created sucessfully'
+    puts
   end
 
-  
   def list_rentals(people)
     puts 'Sorry no people available at the moment' if people.empty?
 
+    puts
     print 'ID of the person: '
 
     id = gets.chomp.to_i
-    get_person = people.select { |person| person.id == id }
+    get_person = people.select do |person|
+      person.id == id || nil
+    end
+
+    puts
+
+    return if [nil, []].include?(get_person)
 
     puts 'Rentals '
 
-    get_person[0].rentals.each do |rental|
-      puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
+    get_person[0].rental.each do |rental|
+      puts "Date: #{rental.date}, Book: \"#{rental.person.title}\" by #{rental.person.author}"
     end
   end
 end
