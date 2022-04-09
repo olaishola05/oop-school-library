@@ -8,6 +8,8 @@
 
 Additional description about the project and its features.
 
+![app](./console_app.png)
+
 ## Built With
 
 - Major language
@@ -46,7 +48,8 @@ $ cd oop-school-library
 #### Run project
 
 ```bash
-$ ruby filename.rb
+- bundle install
+- ruby filename.rb
 ```
 
 ## Author
