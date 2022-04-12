@@ -6,7 +6,7 @@ class OptionsProcessor
     @app_entry_point = App.new
   end
 
-  def get_user_options(run_app)
+  def get_user_options(run_app, data)
     case run_app
     when '1'
       @app_entry_point.list_all_books(data[:books])

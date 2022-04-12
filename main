@@ -30,6 +30,7 @@ end
 
 def main(data)
   options_processor = OptionsProcessor.new
+  options_processor.get_user_options(run_app, data)
   main(data)
 end
 
