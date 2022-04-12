@@ -5,7 +5,6 @@ require_relative './options_processor'
 
 state = { books: [], people: [] }
 
-
 puts 'Welcome to the School library App'
 
 print 'Please create a username: '
@@ -29,8 +28,8 @@ def run_app
 end
 
 def main(data)
-  options_processor = OptionsProcessor.new
-  options_processor.get_user_options(run_app, data)
+  app = OptionsProcessor.new
+  app.get_user_options(run_app, data)
   main(data)
 end
 

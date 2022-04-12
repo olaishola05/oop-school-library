@@ -1,25 +1,24 @@
 require_relative './app'
 
 class OptionsProcessor
-
   def initialize
-    @app_entry_point = App.new
+    @app_entry = App.new
   end
 
   def get_user_options(run_app, data)
     case run_app
     when '1'
-      @app_entry_point.list_all_books(data[:books])
+      @app_entry.list_all_books(data[:books])
     when '2'
-      @app_entry_point.list_all_people(data[:people])
+      @app_entry.list_all_people(data[:people])
     when '3'
-      @app_entry_point.create_person(data[:people])
+      @app_entry.create_person(data[:people])
     when '4'
-      @app_entry_point.create_book(data[:books])
+      @app_entry.create_book(data[:books])
     when '5'
-      @app_entry_point.create_rental(data)
+      @app_entry.create_rental(data)
     when '6'
-      @app_entry_point.list_rentals(data[:people])
+      @app_entry.list_rentals(data[:people])
     when '7'
       puts 'Thank you for using this app!'
       nil
