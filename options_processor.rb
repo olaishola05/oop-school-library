@@ -21,7 +21,7 @@ class OptionsProcessor
       @app_entry.list_rentals(data[:people])
     when '7'
       puts 'Thank you for using this app!'
-      nil
+      exit
     else
       puts 'Invalid selection'
     end
