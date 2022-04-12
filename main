@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
+require_relative './app'
+require_relative './options_processor'
+
 state = { books: [], people: [] }
 
-require_relative './app'
 
 puts 'Welcome to the School library App'
 
@@ -27,26 +29,7 @@ def run_app
 end
 
 def main(data)
-  app = App.new
-  case run_app
-  when '1'
-    app.list_all_books(data[:books])
-  when '2'
-    app.list_all_people(data[:people])
-  when '3'
-    app.create_person(data[:people])
-  when '4'
-    app.create_book(data[:books])
-  when '5'
-    app.create_rental(data)
-  when '6'
-    app.list_rentals(data[:people])
-  when '7'
-    puts 'Thank you for using this app!'
-    return
-  else
-    puts 'Invalid selection'
-  end
+  options_processor = OptionsProcessor.new
   main(data)
 end
 
